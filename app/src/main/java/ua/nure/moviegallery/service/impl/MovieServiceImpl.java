@@ -2,7 +2,6 @@ package ua.nure.moviegallery.service.impl;
 
 import java.util.List;
 
-import ua.nure.moviegallery.api.MovieApi;
 import ua.nure.moviegallery.model.Movie;
 import ua.nure.moviegallery.service.MovieService;
 

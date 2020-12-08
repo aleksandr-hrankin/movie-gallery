@@ -9,4 +9,11 @@ public class Movie {
     public String getActors() {
         return actors;
     }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "actors='" + actors + '\'' +
+                '}';
+    }
 }

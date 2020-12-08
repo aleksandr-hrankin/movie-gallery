@@ -2,11 +2,12 @@ package ua.nure.moviegallery.api;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import ua.nure.moviegallery.model.Movie;
 
-public interface MovieApi {
+public interface MovieApiService {
     @GET("dbs/movies.json?print=pretty")
-    Call<List<Movie>> getMovies();
+    Flowable<List<Movie>> getMovies();
 }
