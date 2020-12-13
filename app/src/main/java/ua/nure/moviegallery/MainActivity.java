@@ -2,54 +2,56 @@ package ua.nure.moviegallery;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.List;
-
-import io.reactivex.Scheduler;
-import io.reactivex.functions.Consumer;
-import ua.nure.moviegallery.api.HttpClient;
+import io.reactivex.Observable;
+import ua.nure.moviegallery.dao.MovieDao;
+import ua.nure.moviegallery.dao.impl.MovieDaoImpl;
+import ua.nure.moviegallery.repository.MovieRepository;
+import ua.nure.moviegallery.repository.impl.MovieRepositoryImpl;
+import ua.nure.moviegallery.service.MovieService;
 import ua.nure.moviegallery.api.MovieApiService;
-import ua.nure.moviegallery.model.Movie;
+import ua.nure.moviegallery.db.DBHelper;
+import ua.nure.moviegallery.service.impl.MovieServiceImpl;
 
 public class MainActivity extends AppCompatActivity {
 
+    private DBHelper dbHelper = new DBHelper(this);
     private MovieApiService movieApiService = HttpClient.getMovieApiService();
-    private TextView tvStatus, tvInfo;
-    private Button btnHttpRequest, btnReset;
+    private MovieDao movieDao = new MovieDaoImpl(dbHelper);
+    private MovieService movieService = new MovieServiceImpl(movieDao);
+    private MovieRepository movieRepository = new MovieRepositoryImpl(movieApiService, movieService);
+
+    private TextView tvInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvStatus = findViewById(R.id.tvStatus);
         tvInfo = findViewById(R.id.tvInfo);
-        btnHttpRequest = findViewById(R.id.btnHttpRequest);
-        btnReset = findViewById(R.id.btnReset);
 
-        btnHttpRequest.setOnClickListener(view -> {
-            exe();
-        });
+//        movieApiService.getMovieRequestDtos()
+//                .observeOn(SchedulerProvider.ui())
+//                .subscribeOn(SchedulerProvider.io())
+//                .subscribe(movieRequestDtos -> {
+//
+//                        },
+//                        throwable -> {
+//
+//                        }
+//                );
 
-        btnReset.setOnClickListener(view -> {
-            tvStatus.setText("Press below button to fire HTTP request");
-            tvInfo.setText("No data");
-        });
+        initBroadcastReceiver();
     }
 
-    private void exe() {
-        tvStatus.setText("HTTP Request in progress.");
-        movieApiService.getMovies()
-                .observeOn(SchedulerProvider.ui())
-                .subscribeOn(SchedulerProvider.io())
-                .subscribe(movies -> {
-                            tvStatus.setText("Request Completed!");
-                            movies.forEach(movie -> tvInfo.append(movie.toString()));
-                        }, throwable -> throwable.printStackTrace()
-                );
+    private void initBroadcastReceiver() {
+        NetworkChangeReceiver networkChangeReceiver = new NetworkChangeReceiver();
+        IntentFilter intentFilter = new IntentFilter(
+                ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeReceiver, intentFilter);
     }
 }
