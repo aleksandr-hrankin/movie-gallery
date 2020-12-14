@@ -1,4 +1,4 @@
-package ua.nure.moviegallery.api;
+package ua.nure.moviegallery.network.api;
 
 import java.util.List;
 

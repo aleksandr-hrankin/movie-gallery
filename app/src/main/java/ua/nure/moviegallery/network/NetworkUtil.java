@@ -1,4 +1,4 @@
-package ua.nure.moviegallery.util;
+package ua.nure.moviegallery.network;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

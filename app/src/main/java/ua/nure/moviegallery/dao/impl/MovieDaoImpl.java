@@ -6,12 +6,16 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import javax.inject.Inject;
+
 import ua.nure.moviegallery.dao.MovieDao;
 import ua.nure.moviegallery.db.DBHelper;
 import ua.nure.moviegallery.model.Movie;
 import ua.nure.moviegallery.model.dto.MovieRequestDto;
 
 public class MovieDaoImpl implements MovieDao {
+    @Inject
     private final DBHelper dbHelper;
 
     public MovieDaoImpl(DBHelper dbHelper) {

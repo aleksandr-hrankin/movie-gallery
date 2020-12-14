@@ -1,10 +1,8 @@
-package ua.nure.moviegallery;
+package ua.nure.moviegallery.network;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-
-import ua.nure.moviegallery.util.NetworkUtil;
 
 public class NetworkChangeReceiver extends BroadcastReceiver {
     @Override

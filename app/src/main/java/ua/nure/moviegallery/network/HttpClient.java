@@ -1,10 +1,10 @@
-package ua.nure.moviegallery;
+package ua.nure.moviegallery.network;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import ua.nure.moviegallery.api.MovieApiService;
+import ua.nure.moviegallery.network.api.MovieApiService;
 
 public class HttpClient {
     private static final String BASE_URL = "https://kaverin-ddb.firebaseio.com/";

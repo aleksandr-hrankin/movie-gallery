@@ -6,7 +6,7 @@ import io.reactivex.Observable;
 import ua.nure.moviegallery.model.Movie;
 import ua.nure.moviegallery.model.dto.MovieRequestDto;
 import ua.nure.moviegallery.repository.MovieRepository;
-import ua.nure.moviegallery.api.MovieApiService;
+import ua.nure.moviegallery.network.api.MovieApiService;
 import ua.nure.moviegallery.service.MovieService;
 
 public class MovieRepositoryImpl implements MovieRepository {

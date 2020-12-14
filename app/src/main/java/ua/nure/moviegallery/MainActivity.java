@@ -8,23 +8,20 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Arrays;
 import java.util.List;
 
-import io.reactivex.Observable;
 import ua.nure.moviegallery.adapter.ClickMovieRecyclerAdapter;
-import ua.nure.moviegallery.adapter.MovieRecyclerAdapter;
 import ua.nure.moviegallery.dao.MovieDao;
 import ua.nure.moviegallery.dao.impl.MovieDaoImpl;
 import ua.nure.moviegallery.model.Movie;
+import ua.nure.moviegallery.network.HttpClient;
+import ua.nure.moviegallery.network.NetworkChangeReceiver;
 import ua.nure.moviegallery.repository.MovieRepository;
 import ua.nure.moviegallery.repository.impl.MovieRepositoryImpl;
 import ua.nure.moviegallery.service.MovieService;
-import ua.nure.moviegallery.api.MovieApiService;
+import ua.nure.moviegallery.network.api.MovieApiService;
 import ua.nure.moviegallery.db.DBHelper;
 import ua.nure.moviegallery.service.impl.MovieServiceImpl;
 
